@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Electric Vehicle Recharge Bunk</title>
+
+  <!-- Google Font (Online) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (Online) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            brand: {
+              50: '#effef6',
+              100: '#d9fde9',
+              200: '#b5f9d4',
+              300: '#84f2b8',
+              400: '#4ae79a',
+              500: '#22c55e', /* primary */
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Icons (Online) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/tabler-icons.min.css" />
+  <meta name="color-scheme" content="light dark" />
+</head>
+
+<body class="bg-slate-950 text-slate-100 antialiased">
+  <!-- Header / Navbar -->
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-slate-950/70 bg-slate-950/90 border-b border-slate-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-500 text-slate-900 font-extrabold">EV</span>
+        <span class="text-lg font-bold tracking-tight">Recharge Bunk</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#features" class="hover:text-brand-300">Features</a>
+        <a href="#how" class="hover:text-brand-300">How it Works</a>
+        <a href="#contact" class="hover:text-brand-300">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="pages/login.html" class="px-4 py-2 rounded-xl border border-slate-700 hover:border-brand-500 hover:text-brand-300 transition">Login</a>
+        <a href="pages/register.html" class="px-4 py-2 rounded-xl bg-brand-500 text-slate-900 font-semibold hover:bg-brand-400 transition">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute -top-24 -left-24 h-64 w-64 rounded-full bg-brand-500/20 blur-3xl"></div>
+      <div class="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl"></div>
+    </div>
+
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
+            Book your <span class="text-brand-400">EV charging</span> slot in seconds.
+          </h1>
+          <p class="mt-4 text-slate-300 text-lg">
+            Find nearby stations, check live slot availability, and reserve your charging window—no queues, no guesswork.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="pages/register.html" class="px-5 py-3 rounded-2xl bg-brand-500 text-slate-900 font-semibold hover:bg-brand-400 transition inline-flex items-center gap-2">
+              <i class="ti ti-bolt text-xl"></i> Get Started
+            </a>
+            <a href="#features" class="px-5 py-3 rounded-2xl border border-slate-700 hover:border-brand-500 hover:text-brand-300 transition inline-flex items-center gap-2">
+              <i class="ti ti-map-pin text-xl"></i> Learn More
+            </a>
+          </div>
+
+          <div class="mt-6 flex items-center gap-6 text-sm text-slate-400">
+            <div class="flex items-center gap-2"><i class="ti ti-shield-check text-lg text-brand-400"></i> Secure & Private</div>
+            <div class="flex items-center gap-2"><i class="ti ti-cloud text-lg text-brand-400"></i> Firebase Powered</div>
+            <div class="flex items-center gap-2"><i class="ti ti-rocket text-lg text-brand-400"></i> Fast & Responsive</div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="rounded-3xl border border-slate-800 bg-slate-900/60 p-4 shadow-2xl">
+            <div class="rounded-2xl bg-slate-950 border border-slate-800 p-4">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                  <div class="h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                  <div class="h-2.5 w-2.5 rounded-full bg-yellow-500"></div>
+                  <div class="h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                </div>
+                <span class="text-xs text-slate-400">Demo Preview</span>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="rounded-xl border border-slate-800 p-4">
+                  <div class="text-slate-300 font-semibold flex items-center gap-2">
+                    <i class="ti ti-map-search text-xl text-brand-400"></i> Nearby Stations
+                  </div>
+                  <p class="text-sm text-slate-400 mt-2">Discover EV bunks on an interactive map.</p>
+                </div>
+
+                <div class="rounded-xl border border-slate-800 p-4">
+                  <div class="text-slate-300 font-semibold flex items-center gap-2">
+                    <i class="ti ti-clock-check text-xl text-brand-400"></i> Live Slot Status
+                  </div>
+                  <p class="text-sm text-slate-400 mt-2">Check real-time slot vacancies before you go.</p>
+                </div>
+
+                <div class="rounded-xl border border-slate-800 p-4">
+                  <div class="text-slate-300 font-semibold flex items-center gap-2">
+                    <i class="ti ti-calendar-plus text-xl text-brand-400"></i> Quick Booking
+                  </div>
+                  <p class="text-sm text-slate-400 mt-2">Reserve a slot with a single tap.</p>
+                </div>
+
+                <div class="rounded-xl border border-slate-800 p-4">
+                  <div class="text-slate-300 font-semibold flex items-center gap-2">
+                    <i class="ti ti-bell-ringing text-xl text-brand-400"></i> Status Updates
+                  </div>
+                  <p class="text-sm text-slate-400 mt-2">Get notified about charging progress.</p>
+                </div>
+              </div>
+
+              <div class="mt-4 text-right">
+                <a href="pages/login.html" class="text-brand-400 hover:underline">Login to continue →</a>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -z-10 -top-6 -right-6 h-28 w-28 rounded-full bg-brand-500/30 blur-2xl"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature grid -->
+  <section id="features" class="py-16 border-t border-slate-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-extrabold mb-6">Why use our platform?</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
+          <i class="ti ti-navigation text-3xl text-brand-400"></i>
+          <h3 class="mt-3 font-semibold">Map-first discovery</h3>
+          <p class="mt-1 text-slate-400 text-sm">Find stations around you with Google Maps integration.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
+          <i class="ti ti-database-check text-3xl text-brand-400"></i>
+          <h3 class="mt-3 font-semibold">Realtime data</h3>
+          <p class="mt-1 text-slate-400 text-sm">Slot availability powered by Firebase Firestore.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
+          <i class="ti ti-lock-check text-3xl text-brand-400"></i>
+          <h3 class="mt-3 font-semibold">Secure access</h3>
+          <p class="mt-1 text-slate-400 text-sm">Role-based auth for Users and Admins.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
+          <i class="ti ti-settings-cog text-3xl text-brand-400"></i>
+          <h3 class="mt-3 font-semibold">Admin controls</h3>
+          <p class="mt-1 text-slate-400 text-sm">Create stations and manage recharge slots.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
+          <i class="ti ti-bolt text-3xl text-brand-400"></i>
+          <h3 class="mt-3 font-semibold">Fast booking</h3>
+          <p class="mt-1 text-slate-400 text-sm">Reserve your slot in a few taps.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
+          <i class="ti ti-report-analytics text-3xl text-brand-400"></i>
+          <h3 class="mt-3 font-semibold">Logs & reports</h3>
+          <p class="mt-1 text-slate-400 text-sm">Action logs for auditing and evaluation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="py-16 border-t border-slate-800">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-extrabold mb-8">How it works</h2>
+      <ol class="grid sm:grid-cols-2 gap-6 list-decimal list-inside">
+        <li class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+          <span class="font-semibold">Sign up / Login.</span> Create an account to get started.
+        </li>
+        <li class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+          <span class="font-semibold">Find a station.</span> Search nearby EV bunks on the map.
+        </li>
+        <li class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+          <span class="font-semibold">Pick a slot.</span> Choose an available time window.
+        </li>
+        <li class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
+          <span class="font-semibold">Charge & go.</span> Receive updates and hit the road.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 border-t border-slate-800">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-8">
+        <h2 class="text-2xl font-bold">Contact</h2>
+        <p class="mt-2 text-slate-400 text-sm">Have questions or feedback? Reach us anytime.</p>
+        <form class="mt-6 grid gap-4 sm:grid-cols-2">
+          <input type="text" placeholder="Your name" class="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+          <input type="email" placeholder="Email address" class="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+          <textarea placeholder="Message" class="sm:col-span-2 w-full min-h-[120px] rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+          <button type="button" class="sm:col-span-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-500 px-5 py-3 font-semibold text-slate-900 hover:bg-brand-400 transition">
+            <i class="ti ti-send"></i> Send
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 py-8">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-400">
+      <p>© 2025 EV Charging Slot Booking</p>
+      <div class="flex items-center gap-4">
+        <a class="hover:text-brand-300" href="pages/login.html">Login</a>
+        <a class="hover:text-brand-300" href="pages/register.html">Register</a>
+        <a class="hover:text-brand-300" href="#features">Features</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Firebase App (Core SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+
+<!-- Firebase Authentication -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+
+<!-- Firebase Firestore -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+
+<script>
+  const firebaseConfig = {
+  apiKey: "AIzaSyCZHsXUzuyolRZMzmu9v6tdzuxqe-3tI8U",
+  authDomain: "ev-slot-booking-system.firebaseapp.com",
+  projectId: "ev-slot-booking-system",
+  storageBucket: "ev-slot-booking-system.firebasestorage.app",
+  messagingSenderId: "151538578561",
+  appId: "1:151538578561:web:d85940a9567f2bc6220980",
+  measurementId: "G-FMMD5N6BVE"
+};
+
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+
+</body>
+</html>

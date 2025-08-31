@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage EV Slots</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white min-h-screen">
+
+  <header class="bg-gray-800 p-5 shadow-md text-center text-2xl font-bold">
+    Manage EV Charging Slots
+  </header>
+
+  <main class="container mx-auto px-6 py-8">
+    <h2 class="text-xl font-semibold mb-4">Add New Slot</h2>
+    <form id="slotForm" class="bg-gray-800 p-6 rounded-lg shadow-lg mb-8">
+      <div class="mb-4">
+        <label class="block text-gray-300 mb-1">Start Time</label>
+        <input type="time" id="startTime" class="w-full p-2 rounded bg-gray-700 text-white">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-300 mb-1">End Time</label>
+        <input type="time" id="endTime" class="w-full p-2 rounded bg-gray-700 text-white">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-300 mb-1">Available Slots</label>
+        <input type="number" id="availableSlots" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="e.g., 10">
+      </div>
+      <button type="submit" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white font-bold">Add Slot</button>
+    </form>
+
+    <h2 class="text-xl font-semibold mb-4">Existing Slots</h2>
+    <div id="slotsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </main>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCZHsXUzuyolRZMzmu9v6tdzuxqe-3tI8U",
+      authDomain: "ev-slot-booking-system.firebaseapp.com",
+      projectId: "ev-slot-booking-system",
+      storageBucket: "ev-slot-booking-system.firebasestorage.app",
+      messagingSenderId: "151538578561",
+      appId: "1:151538578561:web:d85940a9567f2bc6220980",
+      measurementId: "G-FMMD5N6BVE"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const slotsContainer = document.getElementById('slotsContainer');
+    const slotForm = document.getElementById('slotForm');
+
+    // Add Slot
+    slotForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const startTime = document.getElementById('startTime').value;
+      const endTime = document.getElementById('endTime').value;
+      const availableSlots = document.getElementById('availableSlots').value;
+
+      if (!startTime || !endTime || !availableSlots) {
+        alert("Please fill all fields!");
+        return;
+      }
+
+      await db.collection("evSlots").add({
+        startTime,
+        endTime,
+        availableSlots: parseInt(availableSlots),
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+
+      alert("Slot added successfully!");
+      slotForm.reset();
+      loadSlots();
+    });
+
+    // Load Slots
+    async function loadSlots() {
+      slotsContainer.innerHTML = "";
+      const snapshot = await db.collection("evSlots").orderBy("createdAt", "desc").get();
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const card = document.createElement('div');
+        card.className = "bg-gray-800 p-4 rounded-lg shadow-lg";
+        card.innerHTML = `
+          <h3 class="text-lg font-bold">Slot</h3>
+          <p><strong>Start:</strong> ${data.startTime}</p>
+          <p><strong>End:</strong> ${data.endTime}</p>
+          <p><strong>Available:</strong> ${data.availableSlots}</p>
+          <div class="flex space-x-2 mt-3">
+            <button onclick="editSlot('${doc.id}', '${data.startTime}', '${data.endTime}', '${data.availableSlots}')" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded">Edit</button>
+            <button onclick="deleteSlot('${doc.id}')" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded">Delete</button>
+          </div>
+        `;
+        slotsContainer.appendChild(card);
+      });
+    }
+
+    // Delete Slot
+    async function deleteSlot(id) {
+      if (confirm("Are you sure you want to delete this slot?")) {
+        await db.collection("evSlots").doc(id).delete();
+        alert("Slot deleted!");
+        loadSlots();
+      }
+    }
+
+    // Edit Slot
+    async function editSlot(id, startTime, endTime, availableSlots) {
+      const newStart = prompt("Edit Start Time:", startTime);
+      const newEnd = prompt("Edit End Time:", endTime);
+      const newAvailable = prompt("Edit Available Slots:", availableSlots);
+
+      if (newStart && newEnd && newAvailable) {
+        await db.collection("evSlots").doc(id).update({
+          startTime: newStart,
+          endTime: newEnd,
+          availableSlots: parseInt(newAvailable)
+        });
+        alert("Slot updated!");
+        loadSlots();
+      }
+    }
+
+    loadSlots();
+  </script>
+</body>
+</html>

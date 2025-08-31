@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slot Vacancy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #031330, #071c40);
+      color: #fff;
+    }
+    header {
+      background: rgba(0,0,0,0.5);
+      padding: 15px 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .slot {
+      background: rgba(255,255,255,0.15);
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .slot button {
+      background: #ff9800;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .slot button:hover {
+      background: #e68900;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 10px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <header>Slot Vacancy</header>
+  <div class="container">
+    <h2>Available EV Charging Slots</h2>
+    <div id="slots-container">
+      <!-- Slots will load here dynamically -->
+    </div>
+  </div>
+  <footer>&copy; 2025 EV Slot Booking</footer>
+
+  <script>
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCZHsXUzuyolRZMzmu9v6tdzuxqe-3tI8U",
+      authDomain: "ev-slot-booking-system.firebaseapp.com",
+      projectId: "ev-slot-booking-system",
+      storageBucket: "ev-slot-booking-system.firebasestorage.app",
+      messagingSenderId: "151538578561",
+      appId: "1:151538578561:web:d85940a9567f2bc6220980",
+      measurementId: "G-FMMD5N6BVE"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const slotsContainer = document.getElementById('slots-container');
+
+    async function loadSlots() {
+      const snapshot = await db.collection('evSlots').get();
+      slotsContainer.innerHTML = '';
+      if (snapshot.empty) {
+        slotsContainer.innerHTML = '<p>No available slots right now.</p>';
+        return;
+      }
+      snapshot.forEach(doc => {
+        const slot = doc.data();
+        const div = document.createElement('div');
+        div.classList.add('slot');
+        div.innerHTML = `
+          <div>
+            <strong>Start: ${slot.startTime}</strong><br>
+            End: ${slot.endTime}<br>
+            Available: ${slot.availableSlots}
+          </div>
+          <button ${slot.availableSlots <= 0 ? 'disabled' : ''} onclick="bookSlot('${doc.id}', ${slot.availableSlots})">
+            ${slot.availableSlots <= 0 ? 'Full' : 'Book'}
+          </button>
+        `;
+        slotsContainer.appendChild(div);
+      });
+    }
+
+    async function bookSlot(slotId, currentAvailable) {
+      if (currentAvailable <= 0) {
+        alert("No slots left!");
+        return;
+      }
+
+      await db.collection('evSlots').doc(slotId).update({
+        availableSlots: currentAvailable - 1
+      });
+
+      alert('Slot booked successfully!');
+      loadSlots();
+    }
+
+    loadSlots();
+  </script>
+</body>
+</html>

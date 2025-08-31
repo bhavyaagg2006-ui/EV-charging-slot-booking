@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - EV Charging Slot Booking</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            brand: {
+              50: '#effef6',
+              100: '#d9fde9',
+              200: '#b5f9d4',
+              300: '#84f2b8',
+              400: '#4ae79a',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/tabler-icons.min.css" />
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased">
+
+  <div class="min-h-screen flex items-center justify-center px-4">
+    <div class="w-full max-w-md bg-slate-900/60 border border-slate-800 rounded-2xl p-8 shadow-2xl">
+      <h1 class="text-2xl font-extrabold mb-6 text-center">Welcome Back</h1>
+
+      <div class="space-y-4">
+        <input id="email" type="email" placeholder="Email Address"
+          class="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+
+        <div class="relative w-full">
+          <input type="password" id="password" placeholder="Enter your password"
+            class="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 pr-10 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500"/>
+          <button type="button" aria-label="Toggle password visibility"
+            class="absolute inset-y-0 right-3 flex items-center text-slate-400 hover:text-slate-200"
+            onclick="togglePassword()">
+            <i class="ti ti-eye"></i>
+          </button>
+        </div>
+
+        <select id="userType"
+          class="w-full rounded-xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+          <option value="" disabled selected>Select User Type</option>
+          <option value="User">User</option>
+          <option value="EV Admin">EV Admin</option>
+        </select>
+      </div>
+
+      <button onclick="login()"
+        class="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3 font-semibold text-slate-900 hover:bg-brand-400 transition">
+        <i class="ti ti-login"></i> Login
+      </button>
+
+      <p class="text-sm text-center text-slate-400 mt-4">
+        Don't have an account? <a href="./register.html" class="text-brand-400 hover:underline">Register</a>
+      </p>
+
+      <div id="message" class="mt-4 text-center text-sm"></div>
+    </div>
+  </div>
+
+  <!-- Firebase (Compat) SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Use the SAME config as register.html
+    const firebaseConfig = {
+      apiKey: "AIzaSyCZHsXUzuyolRZMzmu9v6tdzuxqe-3tI8U",
+      authDomain: "ev-slot-booking-system.firebaseapp.com",
+      projectId: "ev-slot-booking-system",
+      storageBucket: "ev-slot-booking-system.firebasestorage.app",
+      messagingSenderId: "151538578561",
+      appId: "1:151538578561:web:d85940a9567f2bc6220980",
+      measurementId: "G-FMMD5N6BVE"
+    };
+
+    // 1) Initialize app FIRST
+    firebase.initializeApp(firebaseConfig);
+
+    // 2) Then get auth & db
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    function togglePassword() {
+      const passField = document.getElementById('password');
+      passField.type = passField.type === 'password' ? 'text' : 'password';
+    }
+
+    async function login() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const userType = document.getElementById('userType').value;
+      const messageEl = document.getElementById('message');
+
+      // Basic validation
+      if (!email || !password || !userType) {
+        messageEl.textContent = "Please fill all fields and select your user type.";
+        messageEl.className = "mt-4 text-center text-sm text-red-500";
+        return;
+      }
+
+      messageEl.textContent = "Logging in...";
+      messageEl.className = "mt-4 text-center text-sm text-slate-400";
+
+      try {
+        // Sign in
+        const cred = await auth.signInWithEmailAndPassword(email, password);
+        const user = cred.user;
+
+        // Fetch user doc
+        const docRef = db.collection("users").doc(user.uid);
+        const snap = await docRef.get();
+
+        if (!snap.exists) {
+          messageEl.textContent = "User profile not found in database.";
+          messageEl.className = "mt-4 text-center text-sm text-red-500";
+          return;
+        }
+
+        const data = snap.data();
+        // Expecting register.html saved: { userType: 'User' | 'EV Admin', ... }
+        if (data.userType !== userType) {
+          messageEl.textContent = "Incorrect role selected. Please choose your correct user type.";
+          messageEl.className = "mt-4 text-center text-sm text-red-500";
+          return;
+        }
+
+        // Success
+        messageEl.textContent = "Login successful! Redirecting...";
+        messageEl.className = "mt-4 text-center text-sm text-green-400";
+
+        // Redirect by role
+        setTimeout(() => {
+          if (userType === "EV Admin") {
+            // Update path as per your structure
+            window.location.href = "/dashboards/admin_dashboard.html";
+          } else {
+            window.location.href = "/dashboards/user_dashboard.html";
+          }
+        }, 1000);
+
+      } catch (err) {
+        messageEl.textContent = err.message;
+        messageEl.className = "mt-4 text-center text-sm text-red-500";
+      }
+    }
+  </script>
+</body>
+</html>
