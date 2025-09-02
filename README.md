@@ -38,9 +38,45 @@ This project is a simple, responsive UI that connects to Firebase to:
 
 ## 🚀 Installation & Usage
 
-1. **Clone this repository:**
-   ```bash
-   git clone <>
-   cd ev-slot-booking
+1. **Clone the repository:**  
+```bash
+git clone <>
+```
 
+2. **Open the project folder in VS Code (or any code editor).**
+
+3. **Create a Firebase project:**
+-Go to Firebase Console
+-Click Add Project → Follow steps to create a new project
+
+4. **Enable Authentication:**
+-Navigate to Authentication → Sign-in method
+-Enable Email/Password sign-in
+
+5. **Create Firestore Database:**
+-Go to Firestore Database → Create Database
+-Start in Test Mode
+-Create collections
+
+6. **Add Firebase config in your HTML files:**
+
+**// Firebase configuration**
+```bash
+const firebaseConfig = {
+  apiKey: "AIzaSyD0cA756dZeVEbR4Vqovsh5p74niMxNT3w",
+  authDomain: "cruise-ship-management-s-98138.firebaseapp.com",
+  projectId: "cruise-ship-management-s-98138",
+  storageBucket: "cruise-ship-management-s-98138.firebasestorage.app",
+  messagingSenderId: "401246402444",
+  appId: "1:401246402444:web:dd8a21a7e144e90d3788a9",
+  measurementId: "G-29GKF5F9SS"
+};
+```
+**// Initialize Firebase**
+```bash
+firebase.initializeApp(firebaseConfig);
+```
+7. **Open index.html or login.html in your browser to test the application.**
+
+---
 
