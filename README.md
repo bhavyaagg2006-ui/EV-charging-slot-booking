@@ -40,7 +40,7 @@ This project is a simple, responsive UI that connects to Firebase to:
 
 1. **Clone the repository:**  
 ```bash
-git clone <>
+git clone <https://github.com/bhavyaagg2006-ui/EV-charging-slot-booking.git>
 ```
 
 2. **Open the project folder in VS Code (or any code editor).**
@@ -63,20 +63,26 @@ git clone <>
 **// Firebase configuration**
 ```bash
 const firebaseConfig = {
-  apiKey: "AIzaSyD0cA756dZeVEbR4Vqovsh5p74niMxNT3w",
-  authDomain: "cruise-ship-management-s-98138.firebaseapp.com",
-  projectId: "cruise-ship-management-s-98138",
-  storageBucket: "cruise-ship-management-s-98138.firebasestorage.app",
-  messagingSenderId: "401246402444",
-  appId: "1:401246402444:web:dd8a21a7e144e90d3788a9",
-  measurementId: "G-29GKF5F9SS"
-};
+      apiKey: "AIzaSyCZHsXUzuyolRZMzmu9v6tdzuxqe-3tI8U",
+      authDomain: "ev-slot-booking-system.firebaseapp.com",
+      projectId: "ev-slot-booking-system",
+      storageBucket: "ev-slot-booking-system.firebasestorage.app",
+      messagingSenderId: "151538578561",
+      appId: "1:151538578561:web:d85940a9567f2bc6220980",
+      measurementId: "G-FMMD5N6BVE"
+    };
 ```
 **// Initialize Firebase**
 ```bash
 firebase.initializeApp(firebaseConfig);
 ```
-7. **Open index.html or login.html in your browser to test the application.**
+7. **Open index.html or login.html in your browser to test the application.
+
+---
+
+
+
+
 
 ---
 
