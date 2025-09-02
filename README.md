@@ -91,7 +91,7 @@ firebase.initializeApp(firebaseConfig);
 ![Login page](screenshots/login_page.png)
 
 ### 4. User Dashboard
-![ User Dashboard](screenshots/ user_dashboard.png)
+![User Dashboard](screenshots/user_dashboard.png)
 
 ### 5. Search Bunk
 ![Search Bunk](screenshots/search_bunk.png)
