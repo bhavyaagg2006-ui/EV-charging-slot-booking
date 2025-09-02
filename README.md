@@ -79,6 +79,10 @@ firebase.initializeApp(firebaseConfig);
 7. **Open index.html or login.html in your browser to test the application.
 
 ---
+## 📸 Screenshots
+
+### 1. Signup Page
+![Index page](screenshots/index_page.png)
 
 
 
