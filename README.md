@@ -114,13 +114,78 @@ firebase.initializeApp(firebaseConfig);
 ### 11. Manage Slot
 ![Manage Slot](screenshots/manage_slots.png)
 
+---
 
+## 🛂 Contributing
 
+We welcome contributions to improve this project! Follow these steps:
 
+1. **Fork this repository**  
+   - Click the **Fork** button on the top-right of this repo.
 
+2. **Clone your forked repository:**  
+```bash
+git clone https://github.com/bhavyaagg2006-ui/EV-charging-slot-booking.git
+```
 
+3. **Create a new branch:**
+```bash
+git checkout -b feature-name
+```
 
+4. **Make your changes:**
+   -Add new features.
+   -Fix bugs.
+   -Enhance the design.
 
+6. **Commit your changes:**
+```bash
+git add .
+git commit -m "Added feature: <short-description>"
+```
+
+6. **Push to your branch:**
+```bash
+git push origin feature-name
+```
+
+7. **Create a Pull Request:**
+   -Go to your forked repository on GitHub.
+   -Click Compare & Pull Request.
+   -Add a clear description and submit it for review.
 
 ---
+
+## 🪪 License
+
+This project is licensed under the **MIT License**.  
+See the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🔮 Future Enhancements
+
+- Map-based station selection  
+- Real-time slot availability 
+- Payment gateway integration
+- AI-based slot prediction 
+
+---
+
+## 🏆 Credits
+
+- Developed by **Bhavya Aggarwal**  
+- Guided step-by-step using **OpenAI GPT-5**  
+
+---
+
+## 📞 Contact
+
+For queries or suggestions:  
+- GitHub: [bhavyaagg2006-ui]( https://github.com/bhavyaagg2006-ui)  
+- Email: bhavyaagg2006@gmail.com
+
+
+
+
 
