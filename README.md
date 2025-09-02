@@ -182,7 +182,7 @@ See the [LICENSE](LICENSE) file for details.
 ## 📞 Contact
 
 For queries or suggestions:  
-- GitHub: [bhavyaagg2006-ui](https://github.com/bhavyaagg2006-ui/EV-charging-slot-booking.git)  
+- GitHub: https://github.com/bhavyaagg2006-ui/EV-charging-slot-booking.git  
 - Email: bhavyaagg2006@gmail.com
 
 
