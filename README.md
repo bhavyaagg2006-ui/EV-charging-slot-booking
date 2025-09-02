@@ -81,8 +81,42 @@ firebase.initializeApp(firebaseConfig);
 ---
 ## 📸 Screenshots
 
-### 1. Signup Page
+### 1. Index Page
 ![Index page](screenshots/index_page.png)
+
+### 2. Register Page
+![Register page](screenshots/register_page.png)
+
+### 3. Login Page
+![Login page](screenshots/login_page.png)
+
+### 4. User Dashboard
+![ User Dashboard](screenshots/ user_dashboard.png)
+
+### 5. Search Bunk
+![Search Bunk](screenshots/search_bunk.png)
+
+### 6. Slot Vacancy
+![Slot Vacancy](screenshots/slot_vacancy.png)
+
+### 7. Admin Dashboard
+![Admin Dashboard](screenshots/admin_dashboard.png)
+
+### 8. Create Bunk
+![Create Bunk](screenshots/create_bunk.png)
+
+### 9. Manage Bunk
+![Managee Bunk](screenshots/manage_bunk.png)
+
+### 10. Edit Bunk
+![Edit Bunk](screenshots/edit_bunk.png)
+
+### 11. Manage Slot
+![Manage Slot](screenshots/manage_slots.png)
+
+
+
+
 
 
 
